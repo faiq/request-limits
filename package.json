@@ -1,0 +1,30 @@
+{
+  "name": "request-limits",
+  "version": "1.0.0",
+  "description": "limit the size of an incoming http request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/faiq/request-limits.git"
+  },
+  "keywords": [
+    "http",
+    "request",
+    "limits"
+  ],
+  "author": "faiq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/faiq/request-limits/issues"
+  },
+  "homepage": "https://github.com/faiq/request-limits",
+  "devDependencies": {
+    "lab": "^5.2.1"
+  },
+  "dependencies": {
+    "request": "^2.53.0"
+  }
+}
