@@ -12,7 +12,7 @@ var request = require('request')
 
 describe('a request thats too big', function () { 
   it ('should throw an error', function (done) {  
-    http.createServer(function (req, res) {
+    var server = http.createServer(function (req, res) {
         crypto.randomBytes(256, function(ex, buf) {
           if (ex) throw ex
           res.end(buf)
@@ -24,6 +24,27 @@ describe('a request thats too big', function () {
           expect(e).to.exist()
           expect(r).to.not.exist()
           expect(b).to.not.exist()
+          server.close()
+          done()
+        })
+    limit(s, 255)
+  })
+})
+
+describe('a request thats just right', function () { 
+  it ('should not throw an error', function (done) {  
+    http.createServer(function (req, res) {
+        crypto.randomBytes(254, function(ex, buf) {
+          if (ex) throw ex
+          res.end(buf)
+        })
+      }).listen(1337, '127.0.0.1')
+     
+    var opts = {uri:'http://127.0.0.1:1337'}
+      , s = request(opts, function (e, r, b) { 
+          expect(e).to.not.exist()
+          expect(r).to.exist()
+          expect(b).to.exist()
           done()
         })
     limit(s, 255)
